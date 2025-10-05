@@ -1,0 +1,31 @@
+RELATÓRIO FINAL DE ENTREGA - AEROCODE
+=========================================
+Data de Emissão: 05/10/2025
+Cliente: d
+Data de Entrega: Invalid Date
+
+DADOS DA AERONAVE
+-----------------
+Código: PR-E2E
+Modelo: Embraer E195-E2
+Tipo: COMERCIAL
+Capacidade: 146 passageiros
+
+PEÇAS UTILIZADAS
+----------------
+- Turbina PW1900G (Fornecedor: Pratt & Whitney, Tipo: IMPORTADA)
+- Aviônicos Pro Line Fusion (Fornecedor: Collins Aerospace, Tipo: IMPORTADA)
+- Fuselagem Central (Fornecedor: Embraer Metálicas, Tipo: NACIONAL)
+
+ETAPAS DE PRODUÇÃO CONCLUÍDAS
+-----------------------------
+- Montagem Estrutural (Status: CONCLUIDA)
+- Instalação de Sistemas (Status: CONCLUIDA)
+
+RESULTADOS DOS TESTES
+---------------------
+- Tipo: ELÉTRICO, Resultado: APROVADO
+- Tipo: HIDRÁULICO, Resultado: APROVADO
+
+=========================================
+Aeronave Aprovada para Entrega.

@@ -3,7 +3,7 @@ import { FuncionarioService, type CreateFuncionarioDTO } from './services/Funcio
 import { AeronaveService, type CreateAeronaveDTO, type UpdateAeronaveDTO } from './services/AeronaveService.js';
 import { PecaService, type CreatePecaDTO } from './services/PecaService.js';
 import { EtapaService, type CreateEtapaDTO } from './services/EtapaService.js';
-import { TesteService } from './services/TesteService.js';
+import { TesteService, type AdicionarTesteOptions } from './services/TesteService.js';
 import { RelatorioService } from './services/RelatorioService.js';
 
 import { Aeronave } from './models/Aeronave.js';
@@ -85,6 +85,40 @@ export class AerocodeApp {
         });
     }
 
+    // ===========================
+    // BUSCAS SEGURAS
+    // ===========================
+    public findAeronaveByCodigo(codigo: string): Aeronave | null {
+        const aeronave = this.database.aeronaves.find(a => a.codigo.toLowerCase() === codigo.toLowerCase());
+        return aeronave || null;
+    }
+
+    public findFuncionarioById(id: string): Funcionario | null {
+        const funcionario = this.database.funcionarios.find(f => f.id === id);
+        return funcionario || null;
+    }
+
+    // ===========================
+    // LISTAGENS SEGURAS
+    // ===========================
+    public listarEtapas(codigoAeronave: string): Etapa[] {
+        const aeronave = this.findAeronaveByCodigo(codigoAeronave);
+        return aeronave?.etapas || [];
+    }
+
+    public listarPecas(codigoAeronave: string): Peca[] {
+        const aeronave = this.findAeronaveByCodigo(codigoAeronave);
+        return aeronave?.pecas || [];
+    }
+
+    public listarTestes(codigoAeronave: string): Teste[] {
+        const aeronave = this.findAeronaveByCodigo(codigoAeronave);
+        return aeronave?.testes || [];
+    }
+
+    // ===========================
+    // FUNCIONALIDADES
+    // ===========================
     public start(): void {
         this.cli.start(); 
     }
@@ -113,15 +147,7 @@ export class AerocodeApp {
     public criarFuncionario(data: CreateFuncionarioDTO): void {
         this.funcionarioService.create(data, this.database.funcionarios);
     }
-    
-    public findAeronaveByCodigo(codigo: string): Aeronave {
-        const aeronave = this.database.aeronaves.find(a => a.codigo.toLowerCase() === codigo.toLowerCase());
-        if (!aeronave) {
-            throw new Error('Aeronave não encontrada.');
-        }
-        return aeronave;
-    }
-    
+
     public cadastrarAeronave(data: CreateAeronaveDTO): void {
         this.aeronaveService.create(data, this.database.aeronaves);
     }
@@ -136,10 +162,6 @@ export class AerocodeApp {
 
     public adicionarPeca(data: CreatePecaDTO): void {
         this.pecaService.create(data, this.database.aeronaves);
-    }
-
-    public listarPecas(codigoAeronave: string): Peca[] {
-        return this.pecaService.findByAeronave(codigoAeronave, this.database.aeronaves);
     }
 
     public atualizarStatusPeca(codigoAeronave: string, nomePeca: string, status: StatusPeca): void {
@@ -162,15 +184,30 @@ export class AerocodeApp {
         this.etapaService.associarFuncionario(codigoAeronave, nomeEtapa, idFuncionario, this.database.aeronaves, this.database.funcionarios);
     }
 
-    public adicionarTeste(codigoAeronave: string, tipoTeste: TipoTeste): void {
-        this.testeService.adicionarTeste(codigoAeronave, tipoTeste, this.database.aeronaves);
+    public adicionarTeste(codigoAeronave: string, tipoTeste: TipoTeste, options?: AdicionarTesteOptions): void {
+        this.testeService.adicionarTeste(codigoAeronave, tipoTeste, this.database.aeronaves, options);
     }
 
     public registrarResultadoTeste(codigoAeronave: string, tipoTeste: TipoTeste, resultado: ResultadoTeste): void {
         this.testeService.registrarResultado(codigoAeronave, tipoTeste, resultado, this.database.aeronaves);
     }
 
+    public excluirTeste(codigoAeronave: string, tipoTeste: TipoTeste): void {
+        this.testeService.deleteTeste(codigoAeronave, tipoTeste, this.database.aeronaves);
+    }
+
     public gerarRelatorio(aeronave: Aeronave, cliente: string, dataEntrega: Date): void {
         this.relatorioService.generateAndSaveReport(aeronave, cliente, dataEntrega);
+    }
+
+    // ===========================
+    // LISTAS COMPLETAS
+    // ===========================
+    public listarFuncionarios(): Funcionario[] {
+        return this.database.funcionarios;
+    }
+
+    public listarAeronaves(): Aeronave[] {
+        return this.database.aeronaves;
     }
 }

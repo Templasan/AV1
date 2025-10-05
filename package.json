@@ -26,8 +26,14 @@
   },
   "homepage": "https://github.com/Templasan/AV1#readme",
   "devDependencies": {
+    "@types/boxen": "^2.1.0",
     "@types/node": "^20.19.19",
     "tsx": "^4.16.0",
     "typescript": "^5.5.2"
+  },
+  "dependencies": {
+    "boxen": "^8.0.1",
+    "chalk": "^5.6.2",
+    "inquirer": "^12.9.6"
   }
 }

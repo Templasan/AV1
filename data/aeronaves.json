@@ -1,0 +1,95 @@
+[
+  {
+    "codigo": "PR-E2E",
+    "modelo": "Embraer E195-E2",
+    "tipo": "COMERCIAL",
+    "capacidade": 146,
+    "alcance": 4800,
+    "pecas": [
+      {
+        "nome": "Turbina PW1900G",
+        "tipo": "IMPORTADA",
+        "fornecedor": "Pratt & Whitney",
+        "status": "PRONTA"
+      },
+      {
+        "nome": "Aviônicos Pro Line Fusion",
+        "tipo": "IMPORTADA",
+        "fornecedor": "Collins Aerospace",
+        "status": "PRONTA"
+      },
+      {
+        "nome": "Fuselagem Central",
+        "tipo": "NACIONAL",
+        "fornecedor": "Embraer Metálicas",
+        "status": "PRONTA"
+      }
+    ],
+    "etapas": [
+      {
+        "nome": "Montagem Estrutural",
+        "prazo": "2025-11-15T03:00:00.000Z",
+        "status": "CONCLUIDA",
+        "funcionarios": [
+          { "id": "2" },
+          { "id": "3" }
+        ]
+      },
+      {
+        "nome": "Instalação de Sistemas",
+        "prazo": "2025-11-30T03:00:00.000Z",
+        "status": "CONCLUIDA",
+        "funcionarios": [
+          { "id": "2" }
+        ]
+      }
+    ],
+    "testes": [
+      {
+        "tipo": "ELÉTRICO",
+        "resultado": "APROVADO"
+      },
+      {
+        "tipo": "HIDRÁULICO",
+        "resultado": "APROVADO"
+      }
+    ]
+  },
+  {
+    "codigo": "FAB-2857",
+    "modelo": "Embraer KC-390",
+    "tipo": "MILITAR",
+    "capacidade": 80,
+    "alcance": 2800,
+    "pecas": [
+      {
+        "nome": "Motor IAE V2500-E5",
+        "tipo": "IMPORTADA",
+        "fornecedor": "IAE",
+        "status": "PRONTA"
+      },
+      {
+        "nome": "Sistema de Missão",
+        "tipo": "NACIONAL",
+        "fornecedor": "AEL Sistemas",
+        "status": "EM_TRANSPORTE"
+      }
+    ],
+    "etapas": [
+      {
+        "nome": "Junção das Asas",
+        "prazo": "2025-12-10T03:00:00.000Z",
+        "status": "PENDENTE",
+        "funcionarios": [
+          { "id": "2" }
+        ]
+      }
+    ],
+    "testes": [
+      {
+        "tipo": "AERODINÂMICO",
+        "resultado": "REPROVADO"
+      }
+    ]
+  }
+]

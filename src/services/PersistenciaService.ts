@@ -20,29 +20,16 @@ export class PersistenciaService {
 
     saveCollection(entity: Entity, data: any[]): void {
         const filePath = this.filePaths[entity];
-        try {
-            if (!fs.existsSync(this.dbDirectory)) {
-                fs.mkdirSync(this.dbDirectory, { recursive: true });
-            }
+        if (!fs.existsSync(this.dbDirectory)) fs.mkdirSync(this.dbDirectory, { recursive: true });
 
-            const jsonData = JSON.stringify(data, null, 2);
-            fs.writeFileSync(filePath, jsonData, 'utf-8');
-            console.log(`Coleção '${entity}' salva com sucesso em: ${filePath}`);
-        } catch (error) {
-            console.error(`Erro ao salvar a coleção '${entity}':`, error);
-        }
+        const jsonData = JSON.stringify(data, null, 2);
+        fs.writeFileSync(filePath, jsonData, 'utf-8');
     }
 
     loadCollection<T>(entity: Entity): T[] {
         const filePath = this.filePaths[entity];
-        try {
-            if (fs.existsSync(filePath)) {
-                const jsonData = fs.readFileSync(filePath, 'utf-8');
-                return JSON.parse(jsonData) as T[];
-            }
-        } catch (error) {
-            console.error(`Erro ao carregar a coleção '${entity}':`, error);
-        }
-        return [];
+        if (!fs.existsSync(filePath)) return [];
+        const jsonData = fs.readFileSync(filePath, 'utf-8');
+        return JSON.parse(jsonData) as T[];
     }
 }

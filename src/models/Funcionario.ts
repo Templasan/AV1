@@ -1,4 +1,4 @@
-import { NivelPermissao } from "../enums/enums";
+import { NivelPermissao } from "../enums/enums.js";
 
 export class Funcionario {
     id: string;

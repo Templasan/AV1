@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "nome": "Alice Admin",
+    "telefone": "123456",
+    "endereco": "Rua A",
+    "usuario": "admin",
+    "senha": "admin123",
+    "nivelPermissao": "ADMINISTRADOR"
+  },
+  {
+    "id": "2",
+    "nome": "Bruno Engenheiro",
+    "telefone": "654321",
+    "endereco": "Rua B",
+    "usuario": "bruno",
+    "senha": "eng123",
+    "nivelPermissao": "ENGENHEIRO"
+  },
+  {
+    "id": "3",
+    "nome": "Carla Operadora",
+    "telefone": "789012",
+    "endereco": "Rua C",
+    "usuario": "carla",
+    "senha": "op123",
+    "nivelPermissao": "OPERADOR"
+  }
+]

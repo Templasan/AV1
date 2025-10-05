@@ -1,4 +1,4 @@
-import { Aeronave } from "./Aeronave";
+import { Aeronave } from "./Aeronave.js";
 import * as fs from 'node:fs';
 
 export class Relatorio {

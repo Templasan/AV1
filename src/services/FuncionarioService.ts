@@ -14,9 +14,7 @@ export interface CreateFuncionarioDTO {
 export class FuncionarioService {
     public create(data: CreateFuncionarioDTO, funcionariosList: Funcionario[]): Funcionario {
         const usuarioJaExiste = funcionariosList.some(f => f.usuario === data.usuario);
-        if (usuarioJaExiste) {
-            throw new Error('Nome de utilizador já existe. Por favor, escolha outro.');
-        }
+        if (usuarioJaExiste) throw new Error('Nome de utilizador já existe. Por favor, escolha outro.');
 
         const novoFuncionario = new Funcionario(
             randomUUID(),
@@ -29,17 +27,12 @@ export class FuncionarioService {
         );
 
         funcionariosList.push(novoFuncionario);
-        
         return novoFuncionario;
     }
 
     public authenticate(usuario: string, senha: string, funcionariosList: Funcionario[]): Funcionario | null {
         const funcionario = funcionariosList.find(f => f.usuario === usuario);
-
-        if (funcionario && funcionario.autenticar(usuario, senha)) {
-            return funcionario;
-        }
-
+        if (funcionario && funcionario.autenticar(usuario, senha)) return funcionario;
         return null;
     }
 }

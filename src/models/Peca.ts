@@ -1,4 +1,4 @@
-import { TipoPeca, StatusPeca } from "../enums/enums";
+import { TipoPeca, StatusPeca } from "../enums/enums.js";
 
 export class Peca {
     nome: string;
