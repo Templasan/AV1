@@ -1,12 +1,7 @@
-// src/models/Relatorio.ts
-
 import { Aeronave } from "./Aeronave";
-// O 'fs' (File System) do Node.js será necessário para salvar o arquivo.
-// Lembre-se de instalar os tipos do Node: npm install @types/node --save-dev
 import * as fs from 'node:fs';
 
 export class Relatorio {
-    // Gera o conteúdo do relatório como uma string [cite: 114]
     public gerar(aeronave: Aeronave, cliente: string, dataEntrega: Date): string {
         let conteudo = `RELATÓRIO FINAL DE ENTREGA - AEROCODE\n`;
         conteudo += `=========================================\n`;
@@ -45,7 +40,6 @@ export class Relatorio {
         return conteudo;
     }
 
-    // Salva o conteúdo do relatório em um arquivo de texto [cite: 115]
     public salvar(conteudo: string, nomeArquivo: string): void {
         try {
             fs.writeFileSync(nomeArquivo, conteudo, 'utf-8');

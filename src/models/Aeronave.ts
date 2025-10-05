@@ -33,7 +33,6 @@ export class Aeronave {
         this.testes.push(teste);
     }
     
-    // MÉTODO ATUALIZADO
     public exibirDetalhes(): void {
         console.log(`\n======================================================`);
         console.log(`  DETALHES DA AERONAVE: ${this.modelo} (${this.codigo})`);

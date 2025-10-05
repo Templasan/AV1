@@ -1,4 +1,3 @@
-// src/services/EtapaService.ts
 import { Aeronave } from '../models/Aeronave.js';
 import { Etapa } from '../models/Etapa.js';
 import { Funcionario } from '../models/Funcionario.js';
@@ -11,9 +10,6 @@ export interface CreateEtapaDTO {
 }
 
 export class EtapaService {
-    /**
-     * Adiciona uma nova etapa de produção a uma aeronave.
-     */
     public create(data: CreateEtapaDTO, aeronavesList: Aeronave[]): Etapa {
         const aeronave = aeronavesList.find(a => a.codigo === data.codigoAeronave);
         if (!aeronave) {
@@ -31,9 +27,6 @@ export class EtapaService {
         return novaEtapa;
     }
 
-    /**
-     * Inicia uma etapa de produção, validando a ordem sequencial.
-     */
     public iniciarEtapa(codigoAeronave: string, nomeEtapa: string, aeronavesList: Aeronave[]): void {
         const aeronave = aeronavesList.find(a => a.codigo === codigoAeronave);
         if (!aeronave) throw new Error('Aeronave não encontrada.');
@@ -43,7 +36,6 @@ export class EtapaService {
 
         const etapa = aeronave.etapas[indiceEtapa];
         
-        // CORREÇÃO: Adicionada verificação explícita para remover qualquer ambiguidade para o TypeScript.
         if (!etapa) {
             throw new Error('Erro inesperado: A etapa não foi encontrada no índice fornecido.');
         }
@@ -52,7 +44,6 @@ export class EtapaService {
             throw new Error(`A etapa '${etapa.nome}' já foi iniciada ou concluída.`);
         }
 
-        // Validação da ordem: a etapa anterior (se existir) deve estar concluída.
         if (indiceEtapa > 0) {
             const etapaAnterior = aeronave.etapas[indiceEtapa - 1];
             if (etapaAnterior && etapaAnterior.status !== StatusEtapa.CONCLUIDA) {
@@ -63,9 +54,6 @@ export class EtapaService {
         etapa.iniciar();
     }
 
-    /**
-     * Finaliza uma etapa de produção.
-     */
     public finalizarEtapa(codigoAeronave: string, nomeEtapa: string, aeronavesList: Aeronave[]): void {
         const aeronave = aeronavesList.find(a => a.codigo === codigoAeronave);
         if (!aeronave) throw new Error('Aeronave não encontrada.');
@@ -76,16 +64,13 @@ export class EtapaService {
             throw new Error('Etapa não encontrada.');
         }
 
-        if (etapa.status !== StatusEtapa.EM_ANDAMENTO) {
+        if (etapa.status !== StatusEtapa.ANDAMENTO) {
             throw new Error(`A etapa '${etapa.nome}' não pode ser finalizada pois não está em andamento.`);
         }
 
         etapa.finalizar();
     }
 
-    /**
-     * Associa um funcionário a uma etapa de produção.
-     */
     public associarFuncionario(codigoAeronave: string, nomeEtapa: string, idFuncionario: string, aeronavesList: Aeronave[], funcionariosList: Funcionario[]): void {
         const aeronave = aeronavesList.find(a => a.codigo === codigoAeronave);
         if (!aeronave) throw new Error('Aeronave não encontrada.');

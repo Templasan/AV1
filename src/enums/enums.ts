@@ -1,5 +1,3 @@
-// src/enums/enums.ts
-
 export enum TipoAeronave {
     COMERCIAL = "COMERCIAL",
     MILITAR = "MILITAR"
@@ -11,14 +9,14 @@ export enum TipoPeca {
 }
 
 export enum StatusPeca {
-    EM_PRODUCAO = "EM PRODUÇÃO",
-    EM_TRANSPORTE = "EM TRANSPORTE",
+    EM_PRODUCAO = "EM_PRODUÇÃO",
+    EM_TRANSPORTE = "EM_TRANSPORTE",
     PRONTA = "PRONTA"
 }
 
 export enum StatusEtapa {
     PENDENTE = "PENDENTE",
-    EM_ANDAMENTO = "EM ANDAMENTO",
+    ANDAMENTO = "ANDAMENTO",
     CONCLUIDA = "CONCLUÍDA"
 }
 
